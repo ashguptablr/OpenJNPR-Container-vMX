@@ -34,6 +34,10 @@ COPY riot.patch riot_start.patch create_config_drive.sh launch.sh \
   create_apply_group.sh create_ephemeral_db.sh \
   device_list.sh.patch system_check.sh start_pfe.sh fix_network_order.sh /
 
+COPY riot_init.conf /etc/riot/
+COPY vmxt_init.conf /etc/vmxt/
+
+
 RUN chmod a+rx /*.sh
 
 VOLUME /u /var/run/docker.sock
