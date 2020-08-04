@@ -3,7 +3,7 @@
 # All rights reserved.
 #
 
-echo 1 > /var/jnx/docker
+#echo 1 > /var/jnx/docker
 
 PFE_SRC=/usr/share/pfe
 ukern_init_file="/etc/vmxt/init"
@@ -84,8 +84,6 @@ cd /tmp
 rcp 128.0.0.1:/usr/share/pfe/riot_lnx.tgz .
 tar zxf riot_lnx.tgz
 patch -Np0 < /riot.patch
-#patch -Np0 < /riot_start.patch
-#patch -Np0 < /device_list.sh.patch
 
 echo "patching done. Uploading riot_lnx.tgz to VCP ..."
 tar zcf riot_lnx.tgz riot
