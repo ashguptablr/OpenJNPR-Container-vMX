@@ -3,7 +3,7 @@
 # All rights reserved.
 #
 
-echo 1 > /var/jnx/docker
+#echo 1 > /var/jnx/docker
 
 PFE_SRC=/usr/share/pfe
 ukern_init_file="/etc/vmxt/init"
