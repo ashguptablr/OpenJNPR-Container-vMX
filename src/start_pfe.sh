@@ -10,6 +10,9 @@ ukern_init_file="/etc/vmxt/init"
 mv /etc/riot/riot_init.conf /etc/riot/init.conf
 mv /etc/vmxt/vmxt_init.conf /etc/vmxt/init.conf
 
+
+# "$ukern_init_file contains default value of ukern core to use
+# change that to user supplied core value."
 write_vmxt_init()
 {
   local ukern_cpu
@@ -55,16 +58,6 @@ done
 end=$(date +"%s")
 echo "Done [$(($end - $start))s]"
 
-#if [ ! -f /etc/vmxt/init.conf ]; then
-#  cores=$(cat /proc/self/status |grep Cpus_allowed_list|awk '{print $2}')
-#  if [ -z "${cores##*,*}" ]; then
-#    IFS=', ' read -r -a array <<< "$cores" 
-#    vmxtcore=${array[$RANDOM % ${#array[@]} ]}
-#  else
-#    vmxtcore=$(shuf -i $cores -n 1)
-#  fi
-#fi
-
 # create eDB with interface description taken from docker
 /create_ephemeral_db.sh > /tmp/vfp0.cli
 if [ -s /tmp/vfp0.cli ]; then
@@ -74,8 +67,6 @@ fi
 
 vmxtcore="${VMXT_CORE:-2}"
 write_vmxt_init $vmxtcore
-#mkdir /etc/vmxt
-#echo "ukern_cpu \"$vmxtcore\"" > /etc/vmxt/init.conf
 
 # patch riot to allow macvlan interfaces too
 echo "patching riot.tgz ..."
